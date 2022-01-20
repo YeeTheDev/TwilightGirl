@@ -25,7 +25,7 @@ public class Mover3D : MonoBehaviour
         if (holdHBtn && !holdVBtn || holdVBtn && Input.GetButtonDown("Horizontal")) { lastPressedHBtn = true; }
         if (!holdHBtn && holdVBtn || holdHBtn && Input.GetButtonDown("Vertical")) { lastPressedHBtn = false; }
 
-        Vector3 moveDirection = Vector3.zero * rb.velocity.y;
+        Vector3 moveDirection = Vector3.one * rb.velocity.y;
         moveDirection.x = lastPressedHBtn ? Input.GetAxisRaw("Horizontal") * speed : 0;
         moveDirection.z = !lastPressedHBtn ? Input.GetAxisRaw("Vertical") * speed : 0;
 
