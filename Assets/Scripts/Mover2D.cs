@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Mover2D : MonoBehaviour
+public class Mover2D : Mover
 {
-    [SerializeField] float speed = 3f;
-
     Rigidbody2D rb;
 
     private void Awake()
@@ -14,20 +12,21 @@ public class Mover2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    public override bool IsRigidbodyEnabled() { return !rb.isKinematic; }
+
+    public override void Move(float xAxis, float zAxis)
     {
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = Input.GetAxisRaw("Horizontal") * speed;
+        Debug.Log("Moving 2D thingy");
+        Vector2 moveDirection = Vector2.zero;
+        moveDirection.x = xAxis * Speed;
         moveDirection.y = rb.velocity.y;
 
         rb.velocity = moveDirection;
     }
 
-    public void DisableMovement(bool in3D)
+    public override void SetBehaviorOnMovement(bool use3DMovement)
     {
-        rb.isKinematic = in3D;
-        enabled = !in3D;
-
+        rb.bodyType = use3DMovement ? RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic;
         rb.velocity = Vector3.zero;
     }
 }
