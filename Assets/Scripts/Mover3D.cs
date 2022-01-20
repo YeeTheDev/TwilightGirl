@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Mover3D : MonoBehaviour
+public class Mover3D : Mover
 {
-    [SerializeField] float speed = 3f;
-
-    bool holdHBtn;
-    bool holdVBtn;
-    bool lastPressedHBtn;
     Rigidbody rb;
 
     private void Awake()
@@ -17,26 +12,21 @@ public class Mover3D : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    public override bool IsRigidbodyEnabled() { return !rb.isKinematic; }
+
+    public override void Move(float xAxis, float zAxis)
     {
-        holdHBtn = Input.GetButton("Horizontal");
-        holdVBtn = Input.GetButton("Vertical");
-
-        if (holdHBtn && !holdVBtn || holdVBtn && Input.GetButtonDown("Horizontal")) { lastPressedHBtn = true; }
-        if (!holdHBtn && holdVBtn || holdHBtn && Input.GetButtonDown("Vertical")) { lastPressedHBtn = false; }
-
+        Debug.Log("3D thingy moving");
         Vector3 moveDirection = Vector3.one * rb.velocity.y;
-        moveDirection.x = lastPressedHBtn ? Input.GetAxisRaw("Horizontal") * speed : 0;
-        moveDirection.z = !lastPressedHBtn ? Input.GetAxisRaw("Vertical") * speed : 0;
+        moveDirection.x = xAxis * Speed;
+        moveDirection.z = zAxis * Speed;
 
         rb.velocity = moveDirection;
     }
 
-    public void DisableMovement(bool in3D)
+    public override void SetBehaviorOnMovement(bool use3DMovement)
     {
-        rb.isKinematic = !in3D;
-        enabled = in3D;
-
+        rb.isKinematic = !use3DMovement;
         rb.velocity = Vector3.zero;
     }
 }
