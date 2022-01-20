@@ -28,7 +28,7 @@ namespace TG.ShadowControl
 
         private void ScaleShadowByDistance()
         {
-            float lerpT = (shadow.position.z - model.position.z - model.localScale.z / 2) / 9;
+            float lerpT = (shadow.position.z - model.position.z - model.localScale.z / 2) / maxDistance;
             float scaleByDistance = Mathf.Lerp(1, shadowMaxSize, lerpT);
             shadow.localScale = Vector3.one * scaleByDistance;
         }
