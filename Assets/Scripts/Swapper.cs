@@ -8,26 +8,26 @@ public class Swapper : MonoBehaviour
     [SerializeField] Mover2D mover2D = null;
     [SerializeField] Transform playerParent = null;
 
-    bool in3D;
+    bool use3DMovement = true;
 
-    void Update()
+    public Mover GetActiveMover()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Swap();
-        }
+        if (mover3D.IsRigidbodyEnabled()) { return mover3D; }
+        return mover2D;
     }
 
-    private void Swap()
+    public Mover Swap()
     {
-        in3D = !in3D;
+        use3DMovement = !use3DMovement;
 
-        mover3D.DisableMovement(in3D);
-        mover2D.DisableMovement(in3D);
+        mover3D.SetBehaviorOnMovement(use3DMovement);
+        mover2D.SetBehaviorOnMovement(use3DMovement);
 
         mover3D.transform.parent = null;
         mover2D.transform.parent = null;
-        mover3D.transform.parent = in3D ? playerParent : mover2D.transform;
-        mover2D.transform.parent = in3D ? mover3D.transform : playerParent;
+        mover3D.transform.parent = use3DMovement ? playerParent : mover2D.transform;
+        mover2D.transform.parent = use3DMovement ? mover3D.transform : playerParent;
+
+        return GetActiveMover();
     }
 }
