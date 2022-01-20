@@ -22,4 +22,12 @@ public class Mover2D : MonoBehaviour
 
         rb.velocity = moveDirection;
     }
+
+    public void DisableMovement(bool in3D)
+    {
+        rb.isKinematic = in3D;
+        enabled = !in3D;
+
+        rb.velocity = Vector3.zero;
+    }
 }
