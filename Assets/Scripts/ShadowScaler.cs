@@ -6,31 +6,33 @@ namespace TG.ShadowControl
     {
         [SerializeField] float shadowMaxSize = 2f;
         [SerializeField] float maxDistance = 9f;
+        [SerializeField] float wallDistance = 5f;
         [SerializeField] Transform shadow = null;
-        [SerializeField] Transform model = null;
+        [SerializeField] Transform shadowCollider = null;
 
         float shadowZPosition;
 
-        private void Awake() { shadowZPosition = shadow.position.z; }
+        private void Awake() { shadowZPosition = shadowCollider.position.z; }
 
         private void Update()
         {
-            ClampShadowZPosition();
+            ClampColliderZPosition();
             ScaleShadowByDistance();
         }
 
-        private void ClampShadowZPosition()
+        private void ClampColliderZPosition()
         {
-            Vector3 zClampedPosition = shadow.position;
+            Vector3 zClampedPosition = shadowCollider.position;
             zClampedPosition.z = shadowZPosition;
-            shadow.position = zClampedPosition;
+            shadowCollider.position = zClampedPosition;
         }
 
         private void ScaleShadowByDistance()
         {
-            float lerpT = (shadow.position.z - model.position.z - model.localScale.z / 2) / maxDistance;
+            float lerpT = (wallDistance - transform.position.z - transform.localScale.z / 2) / maxDistance;
             float scaleByDistance = Mathf.Lerp(1, shadowMaxSize, lerpT);
             shadow.localScale = Vector3.one * scaleByDistance;
+            shadowCollider.localScale = shadow.localScale;
         }
     }
 }
