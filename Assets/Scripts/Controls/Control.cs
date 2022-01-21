@@ -7,6 +7,9 @@ namespace TG.Controls
     [RequireComponent(typeof(Swapper))]
     public class Control : MonoBehaviour
     {
+        [SerializeField] Collider2D colliderChecker = null;
+        [SerializeField] LayerMask groundLayer = 0;
+
         float xAxis;
         float zAxis;
         bool holdHBtn;
@@ -24,6 +27,7 @@ namespace TG.Controls
             CheckLastButtonPressed();
             SetAxis();
             ReadSwapInput();
+            ReadJumpInput();
         }
 
         private void CheckLastButtonPressed()
@@ -49,6 +53,17 @@ namespace TG.Controls
                 swapper.Swap();
                 mover = swapper.GetActiveMover();
             }
+        }
+
+        private void ReadJumpInput()
+        {
+            if (Input.GetButtonDown("Jump") && CanJump()) { mover.Jump(false); }
+            else if (Input.GetButtonUp("Jump")) { mover.Jump(true); }
+        }
+
+        private bool CanJump()
+        {
+            return colliderChecker.IsTouchingLayers(groundLayer);
         }
 
         private void FixedUpdate() { mover.Move(xAxis, zAxis); }
