@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using TG.Movement;
 
 namespace TG.Abilities
 {
