@@ -7,7 +7,6 @@ namespace TG.Abilities
     {
         [SerializeField] Mover3D mover3D = null;
         [SerializeField] Mover2D mover2D = null;
-        [SerializeField] Transform playerParent = null;
 
         bool use3DMovement = true;
 
@@ -35,8 +34,9 @@ namespace TG.Abilities
         {
             mover3D.transform.parent = null;
             mover2D.transform.parent = null;
-            mover3D.transform.parent = use3DMovement ? playerParent : mover2D.transform;
-            mover2D.transform.parent = use3DMovement ? mover3D.transform : playerParent;
+
+            mover3D.transform.parent = use3DMovement ? transform : mover2D.transform;
+            mover2D.transform.parent = use3DMovement ? mover3D.transform : transform;
         }
     }
 }
