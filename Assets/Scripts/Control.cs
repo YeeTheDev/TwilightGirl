@@ -1,4 +1,6 @@
 using UnityEngine;
+using TG.Abilities;
+using TG.Movement;
 
 namespace TG.Controls
 {
@@ -40,7 +42,14 @@ namespace TG.Controls
         }
 
         //TODO Add fancy animation
-        private void ReadSwapInput() { if (Input.GetKeyDown(KeyCode.K)) { mover = swapper.Swap(); } }
+        private void ReadSwapInput()
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                swapper.Swap();
+                mover = swapper.GetActiveMover();
+            }
+        }
 
         private void FixedUpdate() { mover.Move(xAxis, zAxis); }
     }
