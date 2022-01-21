@@ -72,10 +72,11 @@ namespace TG.Controls
 
         private void OnDrawGizmos()
         {
-            if (groundChecker == null) { return; }
+            if (ground3DChecker == null || shadowGroundChecker == null) { return; }
 
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(groundChecker.position, checkerRadius);
+            Gizmos.DrawWireSphere(ground3DChecker.position, checkerRadius);
+            Gizmos.DrawWireSphere(shadowGroundChecker.position, checkerRadius);
         }
     }
 }
