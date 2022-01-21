@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {fileID: 1753865392}
-  levelToLoad: 0
+  levelToLoad: 1
 --- !u!1 &954818457
 GameObject:
   m_ObjectHideFlags: 0
