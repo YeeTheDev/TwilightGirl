@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TG.Movement;
 
@@ -5,6 +6,8 @@ namespace TG.Abilities
 {
     public class Swapper : MonoBehaviour
     {
+        public event Action onSwap; 
+
         [SerializeField] Mover3D mover3D = null;
         [SerializeField] Mover2D mover2D = null;
 
@@ -20,6 +23,7 @@ namespace TG.Abilities
         {
             use3DMovement = !use3DMovement;
 
+            if (onSwap != null) { onSwap(); }
             SetCorrectMoverBehavior();
             SetMoverParent();
         }
