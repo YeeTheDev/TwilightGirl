@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TG.Abilities;
 using TG.Movement;
@@ -7,15 +8,19 @@ namespace TG.Controls
     [RequireComponent(typeof(Swapper))]
     public class Control : MonoBehaviour
     {
+        [Header("2D Ground Check")]
         [SerializeField] Collider2D colliderChecker = null;
+
+        [Header("3D Ground Check")]
+        [SerializeField] float checkerRadius = 0;
+        [SerializeField] Transform groundChecker = null;
+
+        [Header("Ground Check Common Settings")]
         [SerializeField] LayerMask groundLayer = 0;
 
+        bool lastPressedHBtn;
         float xAxis;
         float zAxis;
-        bool holdHBtn;
-        bool holdVBtn;
-        bool lastPressedHBtn;
-
         Mover mover;
         Swapper swapper;
 
@@ -30,10 +35,12 @@ namespace TG.Controls
             ReadJumpInput();
         }
 
+        private void FixedUpdate() { mover.Move(xAxis, zAxis); }
+
         private void CheckLastButtonPressed()
         {
-            holdHBtn = Input.GetButton("Horizontal");
-            holdVBtn = Input.GetButton("Vertical");
+            bool holdHBtn = Input.GetButton("Horizontal");
+            bool holdVBtn = Input.GetButton("Vertical");
 
             if (holdHBtn && !holdVBtn || holdVBtn && Input.GetButtonDown("Horizontal")) { lastPressedHBtn = true; }
             if (!holdHBtn && holdVBtn || holdHBtn && Input.GetButtonDown("Vertical")) { lastPressedHBtn = false; }
@@ -57,15 +64,27 @@ namespace TG.Controls
 
         private void ReadJumpInput()
         {
-            if (Input.GetButtonDown("Jump") && CanJump()) { mover.Jump(false); }
+            if (Input.GetButtonDown("Jump") && IsGrounded()) { mover.Jump(false); }
             else if (Input.GetButtonUp("Jump")) { mover.Jump(true); }
         }
 
-        private bool CanJump()
+        private bool IsGrounded()
         {
-            return colliderChecker.IsTouchingLayers(groundLayer);
+            bool using3DMover = mover.GetType().Equals(typeof(Mover3D));
+
+            bool grounded;
+            if (using3DMover) { grounded = Physics.CheckSphere(groundChecker.position, checkerRadius, groundLayer); }
+            else { grounded = colliderChecker.IsTouchingLayers(groundLayer); }
+
+            return grounded;
         }
 
-        private void FixedUpdate() { mover.Move(xAxis, zAxis); }
+        private void OnDrawGizmos()
+        {
+            if (groundChecker == null) { return; }
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(groundChecker.position, checkerRadius);
+        }
     }
 }
