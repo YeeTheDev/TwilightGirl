@@ -5,34 +5,36 @@ using TG.Movement;
 
 namespace TG.Controls
 {
-    [RequireComponent(typeof(Swapper))]
+    [RequireComponent(typeof(PlaneSwapper))]
     public class Control : MonoBehaviour
     {
-        [Header("2D Ground Check")]
-        [SerializeField] Collider2D colliderChecker = null;
-
-        [Header("3D Ground Check")]
         [SerializeField] float checkerRadius = 0;
-        [SerializeField] Transform groundChecker = null;
-
-        [Header("Ground Check Common Settings")]
+        [SerializeField] Transform ground3DChecker = null;
+        [SerializeField] Transform shadowGroundChecker = null;
         [SerializeField] LayerMask groundLayer = 0;
 
         bool lastPressedHBtn;
         float xAxis;
         float zAxis;
-        Mover mover;
-        Swapper swapper;
+        Transform groundChecker;
 
-        private void Awake() { swapper = GetComponent<Swapper>(); }
-        private void Start() { mover = swapper.GetActiveMover(); }
+        Mover mover;
+        PlaneSwapper planeSwapper;
+
+        private void Awake()
+        {
+            groundChecker = ground3DChecker;
+
+            mover = GetComponent<Mover>();
+            planeSwapper = GetComponent<PlaneSwapper>();
+        }
 
         void Update()
         {
             CheckLastButtonPressed();
             SetAxis();
-            ReadSwapInput();
             ReadJumpInput();
+            ReadSwapInput();
         }
 
         private void FixedUpdate() { mover.Move(xAxis, zAxis); }
@@ -49,17 +51,7 @@ namespace TG.Controls
         private void SetAxis()
         {
             xAxis = lastPressedHBtn ? Input.GetAxisRaw("Horizontal") : 0;
-            zAxis = !lastPressedHBtn ? Input.GetAxisRaw("Vertical") : 0;
-        }
-
-        //TODO Add fancy animation
-        private void ReadSwapInput()
-        {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                swapper.Swap();
-                mover = swapper.GetActiveMover();
-            }
+            zAxis = !lastPressedHBtn && !planeSwapper.InShadowRealm ? Input.GetAxisRaw("Vertical") : 0;
         }
 
         private void ReadJumpInput()
@@ -68,15 +60,15 @@ namespace TG.Controls
             else if (Input.GetButtonUp("Jump")) { mover.Jump(true); }
         }
 
-        private bool IsGrounded()
+        private bool IsGrounded() { return Physics.CheckSphere(groundChecker.position, checkerRadius, groundLayer); }
+
+        private void ReadSwapInput()
         {
-            bool using3DMover = mover.GetType().Equals(typeof(Mover3D));
-
-            bool grounded;
-            if (using3DMover) { grounded = Physics.CheckSphere(groundChecker.position, checkerRadius, groundLayer); }
-            else { grounded = colliderChecker.IsTouchingLayers(groundLayer); }
-
-            return grounded;
+            if (Input.GetKeyDown(KeyCode.K) && IsGrounded())
+            {
+                planeSwapper.SwapPlane();
+                groundChecker = planeSwapper.InShadowRealm ? shadowGroundChecker : ground3DChecker;
+            }
         }
 
         private void OnDrawGizmos()
