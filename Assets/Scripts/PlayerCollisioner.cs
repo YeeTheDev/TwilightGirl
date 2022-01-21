@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//TODO Massive Refactor
 public class PlayerCollisioner : MonoBehaviour
 {
     [SerializeField] Transform respawnPoint = null;
