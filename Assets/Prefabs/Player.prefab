@@ -78,9 +78,9 @@ GameObject:
   - component: {fileID: 326577460259709417}
   - component: {fileID: 326577460259709423}
   - component: {fileID: 2818137076843015775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   shadowGroundChecker: {fileID: 326577459853257057}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 200
 --- !u!114 &326577460259709418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goalTag: Goal
+  damagerTag: Damager
 --- !u!1 &326577460294588952
 GameObject:
   m_ObjectHideFlags: 0
