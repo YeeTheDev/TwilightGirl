@@ -32,7 +32,7 @@ namespace TG.Core
         private static void DisableChildRenderer(Transform child)
         {
             MeshRenderer meshRenderer = child.GetComponent<MeshRenderer>();
-            meshRenderer.enabled = false;
+            if (meshRenderer != null) { meshRenderer.enabled = false; }
         }
 
         private void SetChildScale(Transform child)
