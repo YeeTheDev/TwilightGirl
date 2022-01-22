@@ -1,9 +1,12 @@
 using UnityEngine;
+using System;
 
 namespace TG.Abilities
 {
     public class PlaneSwapper : MonoBehaviour
     {
+        public event Action onSwapPlane;
+
         [SerializeField] float shadowCheckerRadius = 0.45f;
         [SerializeField] Collider collider3D = null;
         [SerializeField] Collider colliderShadow = null;
@@ -14,6 +17,7 @@ namespace TG.Abilities
         {
             if (CheckIfShadowsTouching()) { return; }
 
+            if(onSwapPlane != null) { onSwapPlane(); }
             collider3D.enabled = !collider3D.enabled;
             colliderShadow.enabled = !colliderShadow.enabled;
         }
