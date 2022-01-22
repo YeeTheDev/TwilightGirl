@@ -36,24 +36,24 @@ public class CameraMover : MonoBehaviour
 
     private IEnumerator MoveCamera()
     {
-        Vector3 startPosition = inShadowRealm ? position3D : dummyCam.position;
-        Quaternion startRotation = inShadowRealm ? rotation3D : dummyCam.rotation;
-
-        Vector3 targetPosition = inShadowRealm ? dummyCam.position : position3D;
-        Quaternion targetRotation = inShadowRealm ? dummyCam.rotation : rotation3D;
-
         float timer = 0;
         while (timer < timeToMove)
         {
             timer += Time.deltaTime;
 
-            transform.position = Vector3.Lerp(startPosition, targetPosition, timer / timeToMove);
-            transform.rotation = Quaternion.Lerp(startRotation, targetRotation, timer / timeToMove);
+            transform.position = Vector3.Lerp(GetStartPosition(), GetTargetPosition(), timer / timeToMove);
+            transform.rotation = Quaternion.Lerp(GetStartRotation(), GetTargetRotation(), timer / timeToMove);
 
             yield return new WaitForEndOfFrame();
         }
 
-        transform.position = targetPosition;
-        transform.rotation = targetRotation;
+        transform.position = GetTargetPosition();
+        transform.rotation = GetTargetRotation();
     }
+
+    private Vector3 GetStartPosition() { return inShadowRealm ? position3D : dummyCam.position; }
+    private Vector3 GetTargetPosition() { return inShadowRealm ? dummyCam.position: position3D; }
+
+    private Quaternion GetStartRotation() { return inShadowRealm ? rotation3D : dummyCam.rotation; }
+    private Quaternion GetTargetRotation() { return inShadowRealm ? dummyCam.rotation : rotation3D; }
 }
