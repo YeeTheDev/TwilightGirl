@@ -16,16 +16,10 @@ public class ShadowTerrainCreator : MonoBehaviour
 
         foreach (Transform child in shadowColliders.transform)
         {
-            SetChildScale(child);
             SetChildPosition(child);
+            SetChildScale(child);
             DisableChildRenderer(child);
         }
-    }
-
-    private static void DisableChildRenderer(Transform child)
-    {
-        MeshRenderer meshRenderer = child.GetComponent<MeshRenderer>();
-        meshRenderer.enabled = false;
     }
 
     private void SetChildPosition(Transform child)
@@ -33,6 +27,12 @@ public class ShadowTerrainCreator : MonoBehaviour
         Vector3 newPosition = child.position;
         newPosition.z = depth;
         child.position = newPosition;
+    }
+
+    private static void DisableChildRenderer(Transform child)
+    {
+        MeshRenderer meshRenderer = child.GetComponent<MeshRenderer>();
+        meshRenderer.enabled = false;
     }
 
     private void SetChildScale(Transform child)
