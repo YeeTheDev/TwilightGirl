@@ -1,6 +1,7 @@
 using UnityEngine;
 using TG.Abilities;
 using TG.Movement;
+using TG.ShadowControl;
 
 namespace TG.Controls
 {
@@ -19,6 +20,13 @@ namespace TG.Controls
 
         Mover mover;
         PlaneSwapper planeSwapper;
+        ShadowScaler shadowScaler;
+
+        public float CheckerRadius()
+        {
+            if (planeSwapper.InShadowRealm) { return checkerRadius * shadowScaler.ShadowXScale; }
+            else { return checkerRadius; }
+        }
 
         private void Awake()
         {
@@ -26,6 +34,7 @@ namespace TG.Controls
 
             mover = GetComponent<Mover>();
             planeSwapper = GetComponent<PlaneSwapper>();
+            shadowScaler = GetComponent<ShadowScaler>();
         }
 
         void Update()
@@ -59,7 +68,7 @@ namespace TG.Controls
             else if (Input.GetButtonUp("Jump")) { mover.Jump(true); }
         }
 
-        private bool IsGrounded() { return Physics.CheckSphere(groundChecker.position, checkerRadius, groundLayer); }
+        private bool IsGrounded() { return Physics.CheckSphere(groundChecker.position, CheckerRadius(), groundLayer); }
 
         private void ReadSwapInput()
         {
