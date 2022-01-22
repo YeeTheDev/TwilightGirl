@@ -91,7 +91,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326577460259709426}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -196,7 +196,7 @@ MonoBehaviour:
   shadowGroundChecker: {fileID: 326577459853257057}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
 --- !u!114 &326577460259709418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9157210e3bbd54c6eac41dfc3c16e469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sphereCastRadius: 0.45
+  movableMask:
+    serializedVersion: 2
+    m_Bits: 64
   collider3D: {fileID: 326577460259709427}
   colliderShadow: {fileID: 326577460409671262}
 --- !u!114 &326577460259709423
