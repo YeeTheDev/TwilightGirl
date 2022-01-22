@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 326577460259709418}
   - component: {fileID: 326577460259709417}
   - component: {fileID: 326577460259709423}
+  - component: {fileID: 2818137076843015775}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -223,10 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9157210e3bbd54c6eac41dfc3c16e469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphereCastRadius: 0.45
-  movableMask:
-    serializedVersion: 2
-    m_Bits: 64
+  shadowCheckerRadius: 0.45
   collider3D: {fileID: 326577460259709427}
   colliderShadow: {fileID: 326577460409671262}
 --- !u!114 &326577460259709423
@@ -246,6 +244,19 @@ MonoBehaviour:
   wallDistance: 5
   shadow: {fileID: 326577460294588953}
   shadowCollider: {fileID: 326577460409671261}
+--- !u!114 &2818137076843015775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326577460259709426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a1bf19ce5bf4ece896a91f4032e006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goalTag: Goal
 --- !u!1 &326577460294588952
 GameObject:
   m_ObjectHideFlags: 0
