@@ -12,6 +12,8 @@ namespace TG.ShadowControl
 
         float shadowZPosition;
 
+        public float ShadowXScale { get => shadowCollider.localScale.x; }
+
         private void Awake() { shadowZPosition = shadowCollider.position.z; }
 
         private void Update()
