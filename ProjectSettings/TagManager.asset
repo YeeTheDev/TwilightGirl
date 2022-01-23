@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Goal
   - Damager
+  - Terrain
   layers:
   - Default
   - TransparentFX
