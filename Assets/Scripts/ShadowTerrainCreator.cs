@@ -7,6 +7,8 @@ namespace TG.Core
         [SerializeField] GameObject terrain = null;
         [SerializeField] float depth = 7;
 
+        public float GetDepth { get => depth; }
+
         private void Awake() { CreateShadowTerrain(); }
 
         private void CreateShadowTerrain()
