@@ -427,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8384956122500479632, guid: 5361dd14ba9d54ec3ad4dc2e853431d7, type: 3}
       propertyPath: m_Name
-      value: Directional Light (1)
+      value: Directional Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5361dd14ba9d54ec3ad4dc2e853431d7, type: 3}
