@@ -7,6 +7,7 @@ TagManager:
   - Goal
   - Damager
   - Terrain
+  - Spider
   layers:
   - Default
   - TransparentFX
