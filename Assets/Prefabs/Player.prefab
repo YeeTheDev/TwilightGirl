@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326577459853257056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 326577460409671261}
@@ -84,7 +84,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326577459905129780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 326577460259709422}
@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 326577460259709417}
   - component: {fileID: 326577460259709423}
   - component: {fileID: 2818137076843015775}
+  - component: {fileID: 3339709972011357118}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -122,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 326577460259709426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 326577459905129781}
   - {fileID: 326577460409671261}
@@ -138,13 +139,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326577460259709426}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a7ea911d08c0840719258fa10db38343, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.21
-  m_Height: 1
+  m_Radius: 0.17367002
+  m_Height: 0.8140265
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0.036329955, y: 0.3917609, z: 0}
 --- !u!54 &326577460259709416
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -241,6 +242,27 @@ MonoBehaviour:
   goalTag: Goal
   damagerTag: Damager
   spiderTag: Spider
+--- !u!114 &3339709972011357118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326577460259709426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef51ae936e1074365b65eec85b4b5227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToTriggerIdleSpecial: 5
+  meshAnimator: {fileID: 3875955436134726500}
+  shadowAnimator: {fileID: 6249592720896104439}
+  idleParameter: Idle_1_Trigger
+  walkParameter: Walking
+  jumpParameter: Jump
+  yVelocityParameter: Y_Velocity
+  swapParameter: Swap
+  groundedParameter: Grounded
 --- !u!1 &326577460409671260
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,13 +353,13 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326577460409671260}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a7ea911d08c0840719258fa10db38343, type: 2}
   m_IsTrigger: 0
   m_Enabled: 0
-  m_Radius: 0.21
-  m_Height: 1
+  m_Radius: 0.17367002
+  m_Height: 0.8140265
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0.036329955, y: 0.3917609, z: 0}
 --- !u!1 &409139048910813032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,7 +1856,7 @@ Transform:
   m_GameObject: {fileID: 5125289009646459312}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 0.1, y: 1, z: 1}
   m_Children:
   - {fileID: 4462687545608732491}
   - {fileID: 5000659604023877519}
@@ -3063,7 +3085,7 @@ Transform:
   m_GameObject: {fileID: 8986773660492834974}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4932250421171983643}
   - {fileID: 4555951323365198094}
