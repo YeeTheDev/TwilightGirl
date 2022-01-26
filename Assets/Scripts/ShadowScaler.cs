@@ -51,10 +51,10 @@ namespace TG.ShadowControl
             float scaleByDistance = Mathf.Lerp(1, shadowMaxSize, lerpT);
 
             Vector3 shadowScale = Vector3.one * scaleByDistance;
-            shadowScale.z = shadow.localScale.z;
+            shadowScale.x = shadow.localScale.x;
             shadow.localScale = shadowScale;
 
-            shadowScale.z = shadowCollider.localScale.z;
+            shadowScale.x = shadowCollider.localScale.x;
             shadowCollider.localScale = shadowScale;
         }
     }

@@ -2,6 +2,7 @@ using UnityEngine;
 using TG.Abilities;
 using TG.Movement;
 using TG.ShadowControl;
+using TG.Animations;
 
 namespace TG.Controls
 {
@@ -21,6 +22,7 @@ namespace TG.Controls
         Mover mover;
         PlaneSwapper planeSwapper;
         ShadowScaler shadowScaler;
+        Animater animater;
 
         public float CheckerRadius()
         {
@@ -35,6 +37,7 @@ namespace TG.Controls
             mover = GetComponent<Mover>();
             planeSwapper = GetComponent<PlaneSwapper>();
             shadowScaler = GetComponent<ShadowScaler>();
+            animater = GetComponent<Animater>();
         }
 
         void Update()
@@ -45,7 +48,7 @@ namespace TG.Controls
             ReadSwapInput();
         }
 
-        private void FixedUpdate() { mover.Move(xAxis, zAxis); }
+        private void FixedUpdate() { MoveCharacter(); }
 
         private void CheckLastButtonPressed()
         {
@@ -68,16 +71,26 @@ namespace TG.Controls
             else if (Input.GetButtonUp("Jump")) { mover.Jump(true); }
         }
 
-        private bool IsGrounded() { return Physics.CheckSphere(groundChecker.position, CheckerRadius(), groundLayer); }
-
         private void ReadSwapInput()
         {
             if (Input.GetKeyDown(KeyCode.K) && IsGrounded())
             {
                 planeSwapper.SwapPlane();
                 groundChecker = planeSwapper.InShadowRealm ? shadowGroundChecker : ground3DChecker;
+                animater.PlaySwapAnimation();
             }
         }
+
+        private void MoveCharacter()
+        {
+            mover.Move(xAxis, zAxis);
+            animater.SetYVelocity(mover.GetYVelocity());
+            animater.SetGrounded(IsGrounded());
+
+            if (Mathf.Approximately(xAxis, 0) && Mathf.Approximately(zAxis, 0)) { animater.PlaySpecialIdleAnimation(); }
+        }
+
+        private bool IsGrounded() { return Physics.CheckSphere(groundChecker.position, CheckerRadius(), groundLayer); }
 
         private void OnDrawGizmos()
         {
