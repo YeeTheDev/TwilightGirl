@@ -86,6 +86,7 @@ namespace TG.Controls
             mover.Move(xAxis, zAxis);
             animater.SetYVelocity(mover.GetYVelocity());
             animater.SetGrounded(IsGrounded());
+            animater.RotateCharacter(xAxis, zAxis);
 
             if (Mathf.Approximately(xAxis, 0) && Mathf.Approximately(zAxis, 0)) { animater.PlaySpecialIdleAnimation(); }
         }
