@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TG.Abilities;
 using TG.ShadowControl;
 
@@ -17,74 +16,43 @@ public class Collisioner : MonoBehaviour
     [SerializeField] string tutorialTag = "Tutorial";
 
     Transform groundChecker;
-    Vector3 startingPosition;
     ParticlePlayer particlePlayer;
     PlaneSwapper swapper;
     ShadowScaler shadowScaler;
+    Respawner respawner;
 
     private void Awake()
     {
         groundChecker = ground3DChecker;
-        startingPosition = transform.position;
 
         swapper = GetComponent<PlaneSwapper>();
         particlePlayer = GetComponent<ParticlePlayer>();
         shadowScaler = GetComponent<ShadowScaler>();
+        respawner = GetComponent<Respawner>();
 
         swapper.onSwapPlane += SetGroundChecker;
     }
 
     public bool IsGrounded() { return Physics.CheckSphere(groundChecker.position, CheckerRadius(), groundLayer); }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(goalTag))
-        {
-            int sceneToLoad = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
-            SceneManager.LoadScene(sceneToLoad);
-        }
-
-        if(other.CompareTag(damagerTag))
-        {
-            transform.position = startingPosition;
-        }
-
-        if (other.CompareTag(spiderTag))
-        {
-            if (swapper.InShadowRealm)
-            {
-                transform.position = startingPosition;
-            }
-            else
-            {
-                Destroy(other.gameObject);
-            }
-        }
-
-        if (other.CompareTag("Tutorial"))
-        {
-            other.GetComponentInChildren<Canvas>().enabled = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Tutorial"))
-        {
-            other.GetComponentInChildren<Canvas>().enabled = false;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        particlePlayer.PlayDustParticles(IsGrounded());
-    }
-
     public float CheckerRadius()
     {
         if (swapper.InShadowRealm) { return checkerRadius * shadowScaler.ShadowXScale; }
         else { return checkerRadius; }
     }
+
+    private void OnTriggerEnter(Collider other) { ActionOnCollisionType(other.transform, true); }
+    private void OnTriggerExit(Collider other) { ActionOnCollisionType(other.transform, false); }
+
+    private void ActionOnCollisionType(Transform other, bool onEnter)
+    {
+        if (other.CompareTag(damagerTag)) { respawner.Respawn(); }
+        else if (other.CompareTag(spiderTag)) { Destroy(transform.gameObject); }
+        else if (other.CompareTag(goalTag)) { Debug.Log("You won! Now loading things..."); }
+        else if (other.CompareTag(tutorialTag)) { other.GetComponentInChildren<Canvas>().enabled = onEnter; }
+    }
+
+    private void OnCollisionEnter(Collision collision) { particlePlayer.PlayDustParticles(IsGrounded()); }
 
     private void SetGroundChecker() { groundChecker = swapper.InShadowRealm ? shadowGroundChecker : ground3DChecker; }
 
