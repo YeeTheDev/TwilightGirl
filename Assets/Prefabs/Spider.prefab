@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 3320249189161815909}
   m_Layer: 6
   m_Name: Shadow Collider
-  m_TagString: Spider
+  m_TagString: Damager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
