@@ -14,6 +14,7 @@ public class Collisioner : MonoBehaviour
     [SerializeField] string goalTag = "Goal";
     [SerializeField] string damagerTag = "Damager";
     [SerializeField] string spiderTag = "Spider";
+    [SerializeField] string tutorialTag = "Tutorial";
 
     Transform groundChecker;
     Vector3 startingPosition;
@@ -58,6 +59,19 @@ public class Collisioner : MonoBehaviour
             {
                 Destroy(other.gameObject);
             }
+        }
+
+        if (other.CompareTag("Tutorial"))
+        {
+            other.GetComponentInChildren<Canvas>().enabled = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Tutorial"))
+        {
+            other.GetComponentInChildren<Canvas>().enabled = false;
         }
     }
 
