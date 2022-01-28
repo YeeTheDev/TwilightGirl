@@ -113,9 +113,10 @@ MonoBehaviour:
   shadowMaxSize: 2
   maxDistance: 9
   wallDistance: 5
-  shadow: {fileID: 3320249188433684145}
-  shadowCollider: {fileID: 3320249189161815908}
+  shadow3D: {fileID: 3320249188433684145}
+  shadow2D: {fileID: 3320249189161815908}
   terrainTag: Terrain
+  playerTag: Player
 --- !u!1 &3320249188433684146
 GameObject:
   m_ObjectHideFlags: 0

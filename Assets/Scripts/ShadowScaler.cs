@@ -8,18 +8,21 @@ namespace TG.ShadowControl
         [SerializeField] float shadowMaxSize = 2f;
         [SerializeField] float maxDistance = 9f;
         [SerializeField] float wallDistance = 5f;
-        [SerializeField] Transform shadow = null;
-        [SerializeField] Transform shadowCollider = null;
+        [SerializeField] Transform shadow3D = null;
+        [SerializeField] Transform shadow2D = null;
         [SerializeField] string terrainTag = "Terrain";
+        [SerializeField] string playerTag = "Player";
 
+        bool isPlayer;
         float stuckZPosition;
         ShadowTerrainCreator terrainCreator;
 
-        public float ShadowXScale { get => shadowCollider.localScale.x; }
+        public float ShadowXScale { get => shadow2D.localScale.x; }
 
         private void Awake()
         {
             terrainCreator = GameObject.FindGameObjectWithTag(terrainTag).GetComponent<ShadowTerrainCreator>();
+            isPlayer = transform.CompareTag(playerTag);
 
             SetInitialZPosition();
         }
@@ -28,11 +31,11 @@ namespace TG.ShadowControl
         {
             Vector3 shadowColliderStartPosition = transform.position;
             shadowColliderStartPosition.z = terrainCreator.GetDepth;
-            shadowCollider.position = shadowColliderStartPosition;
-            stuckZPosition = shadowCollider.position.z;
+            shadow2D.position = shadowColliderStartPosition;
+            stuckZPosition = shadow2D.position.z;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             StuckColliderZPosition();
             ScaleShadowByDistance();
@@ -40,9 +43,9 @@ namespace TG.ShadowControl
 
         private void StuckColliderZPosition()
         {
-            Vector3 zClampedPosition = shadowCollider.position;
+            Vector3 zClampedPosition = shadow2D.position;
             zClampedPosition.z = stuckZPosition;
-            shadowCollider.position = zClampedPosition;
+            shadow2D.position = zClampedPosition;
         }
 
         private void ScaleShadowByDistance()
@@ -51,8 +54,13 @@ namespace TG.ShadowControl
             float scaleByDistance = Mathf.Lerp(1, shadowMaxSize, lerpT);
 
             Vector3 shadowScale = Vector3.one * scaleByDistance;
-            shadow.localScale = shadowScale;
-            shadowCollider.localScale = shadowScale;
+            shadowScale.z = shadow3D.localScale.z;
+
+            shadow2D.localScale = shadowScale;
+
+            if (isPlayer) { shadowScale.z = scaleByDistance; }
+
+            shadow3D.localScale = shadowScale;
         }
     }
 }

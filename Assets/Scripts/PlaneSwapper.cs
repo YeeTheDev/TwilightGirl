@@ -7,7 +7,7 @@ namespace TG.Abilities
     {
         public event Action onSwapPlane;
 
-        [SerializeField] float shadowCheckerRadius = 0.45f;
+        [SerializeField] LayerMask shadowMask = 0;
         [SerializeField] Collider collider3D = null;
         [SerializeField] Collider colliderShadow = null;
 
@@ -17,19 +17,21 @@ namespace TG.Abilities
         {
             if (CheckIfShadowsTouching()) { return; }
 
-            if(onSwapPlane != null) { onSwapPlane(); }
             collider3D.enabled = !collider3D.enabled;
             colliderShadow.enabled = !colliderShadow.enabled;
+            if (onSwapPlane != null) { onSwapPlane(); }
         }
 
         public bool CheckIfShadowsTouching()
         {
-            BoxCollider box = colliderShadow as BoxCollider;
-            if (box != null && !colliderShadow.enabled)
+            Transform shadowTrans = colliderShadow.transform;
+            CapsuleCollider capsule = colliderShadow as CapsuleCollider;
+
+            if (shadowTrans != null && capsule != null && !colliderShadow.enabled)
             {
-                float radius = shadowCheckerRadius * colliderShadow.transform.localScale.x;
-                Vector3 checkerCenter = colliderShadow.transform.position + box.center * colliderShadow.transform.localScale.x;
-                if (Physics.CheckSphere(checkerCenter, radius)) { return true; }
+                Vector3 capsuleStart = shadowTrans.position + Vector3.right * capsule.center.x * 2 * shadowTrans.localScale.x;
+                Vector3 capsuleEnd = capsuleStart + Vector3.up * capsule.height * 2 * shadowTrans.localScale.x;
+                if (Physics.CheckCapsule(capsuleStart, capsuleEnd, capsule.radius, shadowMask)) { return true; }
             }
 
             return false;
