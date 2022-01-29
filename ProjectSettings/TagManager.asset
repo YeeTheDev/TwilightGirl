@@ -9,6 +9,7 @@ TagManager:
   - Terrain
   - Spider
   - Tutorial
+  - Loader
   layers:
   - Default
   - TransparentFX
