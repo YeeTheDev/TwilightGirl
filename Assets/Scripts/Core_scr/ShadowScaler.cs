@@ -1,7 +1,6 @@
 using UnityEngine;
-using TG.Core;
 
-namespace TG.ShadowControl
+namespace TG.Core
 {
     public class ShadowScaler : MonoBehaviour
     {
