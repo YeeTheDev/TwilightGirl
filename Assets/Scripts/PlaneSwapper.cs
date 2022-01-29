@@ -11,6 +11,10 @@ namespace TG.Abilities
         [SerializeField] Collider collider3D = null;
         [SerializeField] Collider colliderShadow = null;
 
+        Rigidbody rb;
+
+        private void Awake() { rb = GetComponent<Rigidbody>(); }
+
         public bool InShadowRealm { get => colliderShadow.enabled; }
 
         public void SwapPlane()
@@ -19,6 +23,11 @@ namespace TG.Abilities
 
             collider3D.enabled = !collider3D.enabled;
             colliderShadow.enabled = !colliderShadow.enabled;
+
+            rb.constraints = InShadowRealm ?
+                RigidbodyConstraints.FreezePositionZ ^ RigidbodyConstraints.FreezeRotation :
+                RigidbodyConstraints.FreezeRotation;
+
             if (onSwapPlane != null) { onSwapPlane(); }
         }
 
