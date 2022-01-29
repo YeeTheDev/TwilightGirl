@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 2818137076843015775}
   - component: {fileID: 3339709972011357118}
   - component: {fileID: 6333846187319182409}
+  - component: {fileID: 8297976425639804973}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -247,6 +248,7 @@ MonoBehaviour:
   goalTag: Goal
   damagerTag: Damager
   spiderTag: Spider
+  tutorialTag: Tutorial
 --- !u!114 &3339709972011357118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +285,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landDust: {fileID: 1869874784124445936}
-  distanceTraveled: 0.7
+  distanceTraveled: 0.5
+--- !u!114 &8297976425639804973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326577460259709426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f4d5ab2995c4e31a16979f58d586c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &326577460409671260
 GameObject:
   m_ObjectHideFlags: 0
