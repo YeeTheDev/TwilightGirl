@@ -4,6 +4,7 @@ using TG.Movement;
 using TG.Animations;
 using TG.Physic;
 using TG.Core;
+using TG.SceneControl;
 
 namespace TG.Controls
 {
@@ -20,6 +21,10 @@ namespace TG.Controls
         Animater animater;
         Collisioner collisioner;
         SceneEnder sceneEnder;
+        Respawner respawner;
+        SceneReseter sceneReseter;
+
+        private void EnableMovement() { isControlEnabled = true; }
 
         private void Awake()
         {
@@ -27,7 +32,9 @@ namespace TG.Controls
             planeSwapper = GetComponent<PlaneSwapper>();
             animater = GetComponent<Animater>();
             collisioner = GetComponent<Collisioner>();
+            respawner = GetComponent<Respawner>();
             sceneEnder = GameObject.FindGameObjectWithTag("Loader").GetComponent<SceneEnder>();
+            sceneReseter = sceneEnder.GetComponent<SceneReseter>();
 
             sceneEnder.onSceneEnd += StopMovement;
         }
@@ -40,7 +47,9 @@ namespace TG.Controls
             SetAxis();
             ReadJumpInput();
             ReadSwapInput();
+            ReadRestartInput();
             mover.SetStartFallDistance(collisioner.IsGrounded());
+            respawner.CheckFall();
         }
 
         private void FixedUpdate()
@@ -75,8 +84,13 @@ namespace TG.Controls
         {
             if (Input.GetKeyDown(KeyCode.K) && collisioner.IsGrounded())
             {
-                planeSwapper.SwapPlane();
-                animater.PlaySwapAnimation();
+                if(planeSwapper.SwapPlane())
+                {
+                    animater.RotateCharacter(0, 1);
+                    animater.PlaySwapAnimation();
+                    StopMovement();
+                    Invoke("EnableMovement", 0.5f);
+                }
             }
         }
 
@@ -95,5 +109,7 @@ namespace TG.Controls
             isControlEnabled = false;
             mover.Move(0, 0);
         }
+
+        private void ReadRestartInput() { if (Input.GetKeyDown(KeyCode.R)) { sceneReseter.ResetScene(); } }
     }
 }

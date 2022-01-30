@@ -17,9 +17,9 @@ namespace TG.Abilities
 
         public bool InShadowRealm { get => colliderShadow.enabled; }
 
-        public void SwapPlane()
+        public bool SwapPlane()
         {
-            if (CheckIfShadowsTouching()) { return; }
+            if (CheckIfShadowsTouching()) { return false; }
 
             collider3D.enabled = !collider3D.enabled;
             colliderShadow.enabled = !colliderShadow.enabled;
@@ -29,6 +29,8 @@ namespace TG.Abilities
                 RigidbodyConstraints.FreezeRotation;
 
             if (onSwapPlane != null) { onSwapPlane(); }
+
+            return true;
         }
 
         public bool CheckIfShadowsTouching()
