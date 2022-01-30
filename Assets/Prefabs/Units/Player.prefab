@@ -6772,7 +6772,7 @@ Animator:
   m_GameObject: {fileID: 5125289009646459312}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ce2642448825943368c71cd6b8a6efc5, type: 2}
+  m_Controller: {fileID: 22100000, guid: bde6a114c1f5e45bc9989b839ee56d72, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7968,8 +7968,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8645996126412173860}
   - component: {fileID: 3875955436134726500}
-  - component: {fileID: 5103338238267719842}
-  - component: {fileID: 427468038905879337}
+  - component: {fileID: 8954185709623507283}
+  - component: {fileID: 5545773802647404541}
   m_Layer: 6
   m_Name: TwilightGal
   m_TagString: Untagged
@@ -8012,7 +8012,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!82 &5103338238267719842
+--- !u!82 &8954185709623507283
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8023,7 +8023,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1.15
   Loop: 0
@@ -8108,7 +8108,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &427468038905879337
+--- !u!114 &5545773802647404541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8121,7 +8121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpClip: {fileID: 8300000, guid: d234269a815274ee295f9d8ef0d15e06, type: 3}
-  landClip: {fileID: 8300000, guid: 4768153680e4f4cb799e925b90edce46, type: 3}
   winClip: {fileID: 8300000, guid: 53eecf4c9f2634a81aad1292535d4d5f, type: 3}
 --- !u!1 &9078723744141135979
 GameObject:

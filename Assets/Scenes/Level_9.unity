@@ -2851,6 +2851,10 @@ PrefabInstance:
       propertyPath: groundLayer.m_Bits
       value: 712
       objectReference: {fileID: 0}
+    - target: {fileID: 8439780226827012474, guid: a75f1a9f9934d4bff964c69d9c0ed62c, type: 3}
+      propertyPath: m_Pitch
+      value: 1.15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a75f1a9f9934d4bff964c69d9c0ed62c, type: 3}
 --- !u!4 &326577460986000829 stripped
