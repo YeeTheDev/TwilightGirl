@@ -1775,6 +1775,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2041755457754932736, guid: f58b3b0a505924554993a506c9b77b09, type: 3}
+      propertyPath: objectsToReset.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041755457754932736, guid: f58b3b0a505924554993a506c9b77b09, type: 3}
+      propertyPath: objectsToReset.Array.data[0]
+      value: 
+      objectReference: {fileID: 5472705778769792257}
+    - target: {fileID: 2041755457754932736, guid: f58b3b0a505924554993a506c9b77b09, type: 3}
+      propertyPath: objectsToReset.Array.data[1]
+      value: 
+      objectReference: {fileID: 326577460986000829}
     - target: {fileID: 6118263708353522104, guid: f58b3b0a505924554993a506c9b77b09, type: 3}
       propertyPath: m_RootOrder
       value: 8

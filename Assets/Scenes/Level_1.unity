@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2041755457754932736, guid: f58b3b0a505924554993a506c9b77b09, type: 3}
+      propertyPath: objectsToReset.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2041755457754932736, guid: f58b3b0a505924554993a506c9b77b09, type: 3}
+      propertyPath: objectsToReset.Array.data[0]
+      value: 
+      objectReference: {fileID: 1915659333}
     - target: {fileID: 6118263708353522104, guid: f58b3b0a505924554993a506c9b77b09, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2458,6 +2466,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a75f1a9f9934d4bff964c69d9c0ed62c, type: 3}
+--- !u!4 &1915659333 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 326577460259709422, guid: a75f1a9f9934d4bff964c69d9c0ed62c, type: 3}
+  m_PrefabInstance: {fileID: 1915659332}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2061875436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4998944545044954282, guid: 819977e00b6854f66832edb8f75256e8, type: 3}
