@@ -12,6 +12,8 @@ namespace TG.Audio
         {
             if (singleton == null) { singleton = this; }
             else { Destroy(gameObject); }
+
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

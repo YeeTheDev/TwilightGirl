@@ -12,9 +12,11 @@ namespace TG.Core
         public void StartLoading(float timeBeforeLoad, int sceneIndex)
         {
             sceneToLoad = sceneIndex;
+            if (sceneToLoad == -1)
+            { sceneToLoad = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings; }
             Invoke("LoadScene", timeBeforeLoad + extraTimeToLoad);
         }
 
-        public void LoadScene() { SceneManager.LoadScene(sceneToLoad); }
+        private void LoadScene() { SceneManager.LoadScene(sceneToLoad); }
     }
 }
