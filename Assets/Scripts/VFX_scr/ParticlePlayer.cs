@@ -10,10 +10,7 @@ namespace TG.VFX
 
         Mover mover;
 
-        private void Awake()
-        {
-            mover = GetComponent<Mover>();
-        }
+        private void Awake() { mover = GetComponent<Mover>(); }
 
         public void PlayDustParticles(bool isGrounded)
         {
