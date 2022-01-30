@@ -50,7 +50,7 @@ namespace TG.Physic
         private void ActionOnCollisionType(Transform other, bool onEnter)
         {
             if (other.CompareTag(damagerTag)) { respawner.Respawn(); }
-            else if (other.CompareTag(spiderTag)) { Destroy(transform.gameObject); }
+            else if (other.CompareTag(spiderTag)) { Destroy(other.gameObject); }
             else if (other.CompareTag(goalTag)) { Debug.Log("You won! Now loading things..."); }
             else if (other.CompareTag(tutorialTag)) { other.GetComponent<Animator>().SetBool("Reading", onEnter); }
         }
