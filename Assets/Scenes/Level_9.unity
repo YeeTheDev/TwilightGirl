@@ -2688,6 +2688,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Movable Object
       objectReference: {fileID: 0}
+    - target: {fileID: 5472705778157411751, guid: 2fd57b0c849654eb387d9917845a0046, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5472705778157411755, guid: 2fd57b0c849654eb387d9917845a0046, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2811,6 +2815,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1342495789}
     m_Modifications:
+    - target: {fileID: 3320249187953395360, guid: c2017e50ae7274e8482c03192b4e1deb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 82abdd48addc848f88971dcc375bccc0, type: 2}
     - target: {fileID: 3320249187953395361, guid: c2017e50ae7274e8482c03192b4e1deb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2875,6 +2883,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider
       objectReference: {fileID: 0}
+    - target: {fileID: 3320249188433684144, guid: c2017e50ae7274e8482c03192b4e1deb, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 82abdd48addc848f88971dcc375bccc0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2017e50ae7274e8482c03192b4e1deb, type: 3}
 --- !u!4 &8712183745479266358 stripped

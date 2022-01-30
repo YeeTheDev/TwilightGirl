@@ -582,6 +582,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3823893696693013603, guid: 1a5926cb669fb4ae68ddf05c481b2d41, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823893696693013604, guid: 1a5926cb669fb4ae68ddf05c481b2d41, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5b0e445f176fd4a558ebaf45eaca7083, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a5926cb669fb4ae68ddf05c481b2d41, type: 3}
 --- !u!4 &358761428 stripped
@@ -1721,6 +1729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock (0)
       objectReference: {fileID: 0}
+    - target: {fileID: 4080705530442614508, guid: e7b59850cb7ee4e2798c65048071fa13, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4080705530442614509, guid: e7b59850cb7ee4e2798c65048071fa13, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2456,6 +2468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4080705530442614508, guid: e7b59850cb7ee4e2798c65048071fa13, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4080705530442614509, guid: e7b59850cb7ee4e2798c65048071fa13, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2795,7 +2811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5472705778157411755, guid: 2fd57b0c849654eb387d9917845a0046, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5472705778157411755, guid: 2fd57b0c849654eb387d9917845a0046, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2807,7 +2823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5472705778157411755, guid: 2fd57b0c849654eb387d9917845a0046, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12
+      value: -7.47
       objectReference: {fileID: 0}
     - target: {fileID: 5472705778157411755, guid: 2fd57b0c849654eb387d9917845a0046, type: 3}
       propertyPath: m_LocalRotation.w
