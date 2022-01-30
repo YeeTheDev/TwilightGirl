@@ -6,8 +6,6 @@ namespace TG.SceneControl
 {
     public class SceneLoader : MonoBehaviour
     {
-        [SerializeField] float extraTimeToLoad = 0.1f;
-
         int sceneToLoad;
         SceneEnder sceneEnder;
 
