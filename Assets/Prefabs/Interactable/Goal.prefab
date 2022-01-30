@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4098458177096855583}
   - component: {fileID: 4098458177096855576}
   - component: {fileID: 4098458177096855577}
-  - component: {fileID: 4098458177096855581}
+  - component: {fileID: 8534105561908611206}
   m_Layer: 11
   m_Name: Goal
   m_TagString: Goal
@@ -96,16 +96,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.4147179, z: 1}
   m_Center: {x: 0, y: 0.53801286, z: 0}
---- !u!114 &4098458177096855581
-MonoBehaviour:
+--- !u!95 &8534105561908611206
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4098458177096855578}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1376cf08f7a94de087cf06ae47480b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 30
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1fc81640d829440eeb9205b105cd28d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

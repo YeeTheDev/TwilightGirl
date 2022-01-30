@@ -19,12 +19,13 @@ namespace TG.Physic
         [SerializeField] string tutorialTag = "Tutorial";
         [SerializeField] string loaderTag = "Loader";
 
+        bool collisionsEnabled = true;
         Transform groundChecker;
         ParticlePlayer particlePlayer;
         PlaneSwapper swapper;
         ShadowScaler shadowScaler;
         Respawner respawner;
-        SceneLoader sceneLoader;
+        SceneEnder sceneEnder;
 
         private void Awake()
         {
@@ -34,7 +35,7 @@ namespace TG.Physic
             particlePlayer = GetComponent<ParticlePlayer>();
             shadowScaler = GetComponent<ShadowScaler>();
             respawner = GetComponent<Respawner>();
-            sceneLoader = GameObject.FindGameObjectWithTag(loaderTag).GetComponent<SceneLoader>();
+            sceneEnder = GameObject.FindGameObjectWithTag(loaderTag).GetComponent<SceneEnder>();
 
             swapper.onSwapPlane += SetGroundChecker;
         }
@@ -52,10 +53,16 @@ namespace TG.Physic
 
         private void ActionOnCollisionType(Transform other, bool onEnter)
         {
+            if (!collisionsEnabled) { return; }
+
             if (other.CompareTag(damagerTag)) { respawner.Respawn(); }
             else if (other.CompareTag(spiderTag)) { Destroy(other.gameObject); }
-            else if (other.CompareTag(goalTag)) { sceneLoader.StartLoading(0, -1); }
             else if (other.CompareTag(tutorialTag)) { other.GetComponent<Animator>().SetBool("Reading", onEnter); }
+            else if (other.CompareTag(goalTag))
+            {
+                other.GetComponent<Animator>().SetTrigger("CoinGrabbed");
+                sceneEnder.EndScene();
+            }
         }
 
         private void OnCollisionEnter(Collision collision) { particlePlayer.PlayDustParticles(IsGrounded()); }

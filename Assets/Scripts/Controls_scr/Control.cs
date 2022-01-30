@@ -3,12 +3,14 @@ using TG.Abilities;
 using TG.Movement;
 using TG.Animations;
 using TG.Physic;
+using TG.Core;
 
 namespace TG.Controls
 {
     [RequireComponent(typeof(PlaneSwapper))]
     public class Control : MonoBehaviour
     {
+        bool isControlEnabled = true;
         bool lastPressedHBtn;
         float xAxis;
         float zAxis;
@@ -17,6 +19,7 @@ namespace TG.Controls
         PlaneSwapper planeSwapper;
         Animater animater;
         Collisioner collisioner;
+        SceneEnder sceneEnder;
 
         private void Awake()
         {
@@ -24,10 +27,15 @@ namespace TG.Controls
             planeSwapper = GetComponent<PlaneSwapper>();
             animater = GetComponent<Animater>();
             collisioner = GetComponent<Collisioner>();
+            sceneEnder = GameObject.FindGameObjectWithTag("Loader").GetComponent<SceneEnder>();
+
+            sceneEnder.onSceneEnd += StopMovement;
         }
 
         void Update()
         {
+            if (!isControlEnabled) { return; }
+
             CheckLastButtonPressed();
             SetAxis();
             ReadJumpInput();
@@ -35,7 +43,12 @@ namespace TG.Controls
             mover.SetStartFallDistance(collisioner.IsGrounded());
         }
 
-        private void FixedUpdate() { MoveCharacter(); }
+        private void FixedUpdate()
+        {
+            if (!isControlEnabled) { return; }
+
+            MoveCharacter();
+        }
 
         private void CheckLastButtonPressed()
         {
@@ -75,6 +88,12 @@ namespace TG.Controls
             animater.RotateCharacter(xAxis, zAxis);
 
             if (Mathf.Approximately(xAxis, 0) && Mathf.Approximately(zAxis, 0)) { animater.PlaySpecialIdleAnimation(); }
+        }
+
+        private void StopMovement()
+        {
+            isControlEnabled = false;
+            mover.Move(0, 0);
         }
     }
 }

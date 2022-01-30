@@ -12,18 +12,18 @@ namespace TG.UserInterface
         [SerializeField] AnimationClip fadeAnimationClip = null;
 
         Animator animator;
-        SceneLoader sceneLoader;
+        SceneEnder sceneEnder;
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
-            sceneLoader = FindObjectOfType<SceneLoader>();
+            sceneEnder = GameObject.FindGameObjectWithTag("Loader").GetComponent<SceneEnder>();
+
+            if (sceneEnder != null) { sceneEnder.onSceneEnd += DelayedFade; }
         }
 
-        public void FadeAndLoad(int sceneToLoad)
-        {
-            animator.SetTrigger(fadeParameter);
-            sceneLoader.StartLoading(fadeAnimationClip.length, sceneToLoad);
-        }
+        public void DelayedFade() { Invoke("Fade", 1f); }
+
+        public void Fade() { animator.SetTrigger(fadeParameter); }
     }
 }
